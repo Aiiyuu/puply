@@ -44,38 +44,75 @@ Detailed folder structure showing how Domain-Driven Design is applied to your sp
 apps/api/
 ├── cmd/
 │   └── server/
-│       └── main.go                 # Dependency Injection & Server Entry
+│       └── main.go
+│
 ├── internal/
-│   ├── auth/                       # AUTH BOUNDED CONTEXT
-│   │   ├── domain/                 # User Entity, JWT logic, Auth errors
-│   │   ├── repository/             # Prisma/Postgres implementation
-│   │   ├── service/                # Login/Register flow logic
-│   │   └── transport/              # Gin Handlers (HTTP)
-│   ├── discovery/                  # DISCOVERY/SWIPE CONTEXT
-│   │   ├── domain/                 # Swipe entity, Matching rules
-│   │   ├── repository/             # PostGIS geolocation queries
-│   │   ├── service/                # Swipe processing, Match creation
-│   │   └── transport/              # Swipe handlers & filters
-│   ├── chat/                       # MESSAGING CONTEXT
-│   │   ├── domain/                 # Message, Conversation, Status entities
-│   │   ├── repository/             # Message persistence & Redis heartbeats
-│   │   ├── service/                # WebSocket Hub logic, Redis Pub/Sub
-│   │   └── transport/              # WS Upgraders & Message routing
-│   ├── profile/                    # PROFILE CONTEXT
-│   │   ├── domain/                 # Dog entity, Gallery sorting rules
-│   │   ├── repository/             # Gallery storage & Rekognition data
-│   │   ├── service/                # NSFW detection & Image processing
-│   │   └── transport/              # Profile/Gallery handlers
-│   └── shared/                     # THE SHARED KERNEL
-│       ├── models/                 # Shared structs (Dog, User, Interest)
-│       ├── middleware/             # Auth, Logger, Recovery
-│       └── response/               # Standard API response wrappers
-├── pkg/                            # CROSS-CUTTING UTILS
-│   ├── s3/                         # AWS S3 custom wrapper
-│   ├── rekognition/                # AWS Rekognition interface
-│   └── logger/                     # Structured Zap logger setup
-├── docs/                           # Swagger generation target
+│   ├── domain/
+│   │   ├── auth/
+│   │   │   ├── user.go
+│   │   │   ├── jwt.go
+│   │   │   ├── errors.go
+│   │   │   └── repository.go
+│   │   │
+│   │   ├── discovery/
+│   │   │   ├── swipe.go
+│   │   │   ├── match.go
+│   │   │   └── repository.go
+│   │   │
+│   │   ├── chat/
+│   │   │   ├── message.go
+│   │   │   ├── conversation.go
+│   │   │   └── repository.go
+│   │   │
+│   │   └── profile/
+│   │       ├── dog.go
+│   │       ├── gallery.go
+│   │       └── repository.go
+│   │
+│   ├── application/
+│   │   ├── auth/
+│   │   │   └── usecase.go
+│   │   ├── discovery/
+│   │   │   └── usecase.go
+│   │   ├── chat/
+│   │   │   └── usecase.go
+│   │   └── profile/
+│   │       └── usecase.go
+│   │
+│   ├── infrastructure/
+│   │   ├── persistence/
+│   │   │   ├── postgres/
+│   │   │   │   ├── auth_repository.go
+│   │   │   │   ├── discovery_repository.go
+│   │   │   │   ├── chat_repository.go
+│   │   │   │   └── profile_repository.go
+│   │   │   │
+│   │   │   └── redis/
+│   │   │       └── chat_pubsub.go
+│   │   │
+│   │   ├── storage/
+│   │   │   └── s3.go
+│   │   │
+│   │   └── logger/
+│   │       └── zap.go
+│   │
+│   └── interfaces/
+│       └── http/
+│           ├── middleware/
+│           │   ├── auth.go
+│           │   └── recovery.go
+│           │
+│           ├── handler/
+│           │   ├── auth_handler.go
+│           │   ├── discovery_handler.go
+│           │   ├── chat_handler.go
+│           │   └── profile_handler.go
+│           │
+│           └── router.go
+│
+├── docs/
 │   └── swagger.yaml
+│
 ├── go.mod
 └── go.sum
 ```
