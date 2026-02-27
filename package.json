@@ -1,0 +1,15 @@
+{
+  "name": "Puply",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "app:web:dev": "pnpm --filter web dev",
+    "app:web:build": "pnpm --filter web build",
+    "app:web:lint": "pnpm --filter web lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.28.2"
+}
