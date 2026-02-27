@@ -1,3 +1,5 @@
+# Workspace Structure: Puply.dog
+
 ### 1. Infrastructure & Root
 This section covers the global orchestration and environment setup.
 
