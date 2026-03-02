@@ -1,15 +1,28 @@
 {
-  "name": "Puply",
+  "name": "puply",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "app:web:dev": "pnpm --filter web dev",
     "app:web:build": "pnpm --filter web build",
-    "app:web:lint": "pnpm --filter web lint"
+    "app:web:lint": "pnpm --filter web lint",
+    "app:web:lint:fix": "pnpm --filter web exec eslint . --fix",
+    "app:web:format": "pnpm --filter web exec prettier --write ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.28.2"
+  "packageManager": "pnpm@10.28.2",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^9.39.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript-eslint": "^8.56.1"
+  }
 }
