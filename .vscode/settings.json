@@ -3,7 +3,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.golangci-lint": "explicit"
   },
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   // Tells ESLint where to look in your monorepo
@@ -38,7 +39,17 @@
   "[go]": {
     "editor.defaultFormatter": "golang.go",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
+      "source.organizeImports": "explicit",
+      "source.fixAll.golangci-lint": "explicit"
     }
-  }
+  },
+
+  "go.lintTool": "golangci-lint",
+  "go.lintOnSave": "package",
+  "go.alternateTools": {
+    "golangci-lint": "/Users/nazariyholovach/go/bin/golangci-lint"
+  },
+  "golangci-lint.runOptions": ["--config=apps/api/.golangci.yml", "--fix"],
+
+  "makefile.configureOnOpen": false
 }

@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://json.schemastore.org/golangci-lint.json
+version: "v1.60"
+
+run:
+  timeout: 5m
+  go: "1.25"
+  modules-download-mode: readonly
+
+linters-settings:
+  revive:
+    rules:
+      - name: package-comments
+        disabled: true
+      - name: exported
+        disabled: true
+      - name: blank-imports
+        disabled: true
+
+  wsl:
+    force-err-cuddling: true
+    strict-append: true
+    allow-assign-and-call: false
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - gofmt
+    - gofumpt
+    - wsl
+    - revive
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0

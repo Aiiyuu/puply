@@ -1,8 +1,8 @@
-import js from "@eslint/js";
-import prettier from "eslint-config-prettier";
-import importPlugin from "eslint-plugin-import";
-import unusedImports from "eslint-plugin-unused-imports";
-import tseslint from "typescript-eslint";
+import js from "@eslint/js"
+import prettier from "eslint-config-prettier"
+import importPlugin from "eslint-plugin-import"
+import unusedImports from "eslint-plugin-unused-imports"
+import tseslint from "typescript-eslint"
 
 export default tseslint.config(
   // Base JS & TS Recommended rules
@@ -25,12 +25,7 @@ export default tseslint.config(
       "import/order": [
         "error",
         {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            ["parent", "sibling", "index"],
-          ],
+          groups: ["builtin", "external", "internal", ["parent", "sibling", "index"]],
           pathGroups: [
             {
               pattern: "@lib/**",
@@ -65,8 +60,7 @@ export default tseslint.config(
           paths: [
             {
               name: "axios",
-              message:
-                "Manual Axios calls are forbidden. Use generated hooks from @lib/generated.",
+              message: "Manual Axios calls are forbidden. Use generated hooks from @lib/generated.",
             },
           ],
         },
@@ -89,6 +83,15 @@ export default tseslint.config(
 
   // 4. Global Ignores (Replaces .eslintignore)
   {
-    ignores: ["**/node_modules/**", "**/dist/**", "**/build/**", "apps/api/**"],
+    ignores: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "apps/api/**",
+      "apps/web/.next/**",
+      "apps/web/out/**",
+      "**/next-env.d.ts",
+      "**/.turbo/**",
+    ],
   },
-);
+)
