@@ -11,6 +11,7 @@ tmp/
 # Output of 'go build' if you run it manually
 /main
 /server
+/tmp/
 
 # --- Dependency Management ---
 # (Keep go.mod and go.sum, but ignore vendor if you use it)
