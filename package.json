@@ -5,11 +5,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky",
     "app:web:dev": "pnpm --filter web dev",
     "app:web:build": "pnpm --filter web build",
     "app:web:lint": "pnpm --filter web lint",
     "app:web:lint:fix": "pnpm --filter web exec eslint . --fix",
     "app:web:format": "pnpm --filter web exec prettier --write ."
+  },
+  "lint-staged": {
+    "apps/api/**/*.go": ["make format", "make lint"],
+    "apps/web/**/*.{js,jsx,ts,tsx}": ["pnpm --filter web lint", "pnpm prettier --write"],
+    "**/*.{json,md,css}": ["pnpm prettier --write"]
   },
   "keywords": [],
   "author": "",
@@ -21,6 +27,8 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-unused-imports": "^4.4.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.2",
     "prettier": "^3.8.1",
     "stylelint": "^17.4.0",
     "stylelint-config-prettier": "^9.0.5",
