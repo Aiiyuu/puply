@@ -25,3 +25,4 @@ vendor/
 # --- Environment / Secrets ---
 .env
 *.local
+/generated/prisma
