@@ -1,6 +1,6 @@
 # --- Variables ---
 LINTER = $(shell go env GOPATH)/bin/golangci-lint
-DEV_COMPOSE = docker-compose -f infra/development/docker-compose.yml
+DEV_COMPOSE = docker compose -f infra/development/docker-compose.yml
 
 .PHONY: setup lint format up down restart status logs logs-api logs-web api-up web-up api-exec web-exec db-shell
 
