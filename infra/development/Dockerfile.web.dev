@@ -1,0 +1,15 @@
+FROM node:20-alpine
+
+# Install pnpm globally
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Set the working directory to the web app folder inside the monorepo
+WORKDIR /app/apps/web
+
+# Expose the Next.js port
+EXPOSE 3000
+
+# Start the dev server. 
+# pnpm will look at the workspace root (one level up) for the lockfile 
+# but run the 'dev' script defined in apps/web/package.json
+CMD ["sh", "-c", "pnpm install && pnpm dev"]

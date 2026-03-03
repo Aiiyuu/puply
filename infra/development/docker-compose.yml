@@ -1,0 +1,59 @@
+services:
+  # --- DATABASE ---
+  postgres:
+    image: postgres:16-alpine
+    container_name: puply-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: a12a14t56
+      POSTGRES_DB: puply
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # --- CACHE ---
+  redis:
+    image: redis:7-alpine
+    container_name: puply-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # --- BACKEND (Go) ---
+  api:
+    build:
+      context: ../../
+      dockerfile: infra/development/Dockerfile.api.dev
+    container_name: puply-api
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://postgres:a12a14t56@postgres:5432/puply?sslmode=disable
+      - REDIS_URL=redis:6379
+    volumes:
+      - ../../:/app
+    depends_on:
+      - postgres
+      - redis
+
+  # --- FRONTEND (Next.js) ---
+  web:
+    build:
+      context: ../../
+      dockerfile: infra/development/Dockerfile.web.dev
+    container_name: puply-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+      - NODE_ENV=development
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+      - /app/apps/web/node_modules
+
+volumes:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,14 @@
+FROM golang:1.25-alpine
+
+# Install Air for hot reloading
+RUN go install github.com/air-verse/air@latest
+
+# Set the working directory to where the API code lives inside the monorepo
+WORKDIR /app/apps/api
+
+# Expose the Go API port
+EXPOSE 8080
+
+# Start air by default. 
+# Because WORKDIR is /app/apps/api, it will find .air.toml right there.
+CMD ["air", "-c", ".air.toml"]
