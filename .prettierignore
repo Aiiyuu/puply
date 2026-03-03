@@ -1,0 +1,19 @@
+# Build outputs
+.next/
+dist/
+tmp/
+out/
+
+# Dependencies
+node_modules/
+
+# Go artifacts
+apps/api/tmp/
+
+# Locks and logs
+pnpm-lock.yaml
+*.log
+
+# Sensitive or static files
+.env*
+public/

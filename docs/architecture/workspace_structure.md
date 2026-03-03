@@ -1,6 +1,7 @@
 # Workspace Structure: Puply.dog
 
 ### 1. Infrastructure & Root
+
 This section covers the global orchestration and environment setup.
 
 ```text
@@ -38,6 +39,7 @@ root/
 ```
 
 ### 2. Backend: API (Modular DDD)
+
 Detailed folder structure showing how Domain-Driven Design is applied to your specific features.
 
 ```text
@@ -118,6 +120,7 @@ apps/api/
 ```
 
 ### 3. Frontend & Mobile (Feature-Based Design)
+
 Separation of logic by feature, ensuring high reusability of the mental model.
 
 ```text
@@ -147,6 +150,7 @@ apps/[web-or-mobile]/               # Mirrored structure for Web/Mobile
 ```
 
 ### 4. Shared Libraries (The "Lib" Folder)
+
 The core shared logic and the bridge between your Go API and TS Frontends.
 
 ```text
